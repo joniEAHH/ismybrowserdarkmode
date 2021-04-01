@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Is my browser dark mode?</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin:0;
+      }
+      .container {
+        width: 100%;
+        height: 100%; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        font-size: 0;
+        font-family: serif;
+        letter-spacing: 5px;
+        transition: all 300ms;
+        font-family: roboto;
+        animation-name: grow;
+        animation-duration: 1s;
+        animation-delay: 200ms;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      .dark {
+        background: black;
+        color: white;
+      }
+      @keyframes grow {
+        from {font-size: 0}
+        to {font-size: 400px;}
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <p id="theme"></p>
+    </div>
+    <script>
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches == true) {
+        theme.innerText = "YES";	
+      	container.classList.add("dark");
+      } else {
+      	theme.innerText = "NO";
+      	container.classList.remove("dark");
+      }
+      
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches == true) {
+        theme.innerText = "YES";	
+      	container.classList.add("dark");
+      } else {
+        theme.innerText = "NO";
+      	container.classList.remove("dark");
+      }
+      });
+    </script>
+  </body>
+</html>
